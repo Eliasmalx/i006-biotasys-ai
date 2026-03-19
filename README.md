@@ -61,8 +61,35 @@ Crea un archivo `.env` basado en `env.example`:
 GEMINI_API_KEY=tu_clave_aqui
 EXTRACTION_MODEL=gemini-2.5-flash-lite
 INTERPRETATION_MODEL=gemini-3-pro
+
+# Supabase Configuration
 SUPABASE_URL=...
 SUPABASE_KEY=...
+
+# JWT Configuration
+JWT_SECRET_KEY=...
+JWT_ALGORITHM=...
+JWT_EXPIRE_MINUTES=a_elegir
+
+BACKEND_NEST_URL=..
+
+# FastAPI Configuration
+APP_NAME=Biotasys AI
+APP_VERSION=1.0.0
+DEBUG=true
+
+# API Configuration
+API_HOST=
+API_PORT=
+
+# CORS Configuration
+CORS_ORIGINS=["*"]
+CORS_ALLOW_CREDENTIALS=true
+CORS_ALLOW_METHODS=["*"]
+CORS_ALLOW_HEADERS=["*"]
+
+# Logging Configuration
+LOG_LEVEL=INFO
 ```
 
 ### 2. Instalación y Ejecución
@@ -87,9 +114,10 @@ pytest --cov=app tests/
 
 ## 📄 API Endpoints Principales
 
-*   `POST /api/v1/clinical/process-report`: Orquestación completa (Descarga -> Extracción -> Interpretación -> Guardado).
-*   `GET /api/v1/clinical/report/{id}`: Recuperación de informes procesados.
+*   `POST /api/v1/clinical/process-report-json`: Orquestación completa (Descarga -> Extracción -> Interpretación -> Creacion de PDF -> Guardado en supabase).
+*   `GET /api/v1/clinical/report/{report_id}`: Recuperación de informes procesados.
 *   `GET /api/v1/health`: Estado de salud del sistema y conectividad con la IA.
+*   `GET /api/v1/clinical/analysis-reports/{study_code}`: Recupera un informe. Protegido: Requiere X-API-KEY.
 
 ---
 
